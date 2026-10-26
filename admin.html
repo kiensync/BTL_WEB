@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Trị Hệ Thống - Hotel Luxury</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HOTEL LUXURY - ADMIN</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="booking.html">Đặt phòng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+                <li><a href="admin.html">Trang quản trị</a></li>
+                <li><a href="login.html" id="navAuthLink">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner" style="height: 180px; padding: 40px 20px;">
+        <h1>HỆ THỐNG QUẢN TRỊ KHÁCH SẠN</h1>
+        <p>Quản lý danh sách phòng, điều chỉnh phòng và phân quyền tài khoản khách hàng</p>
+    </div>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            <div class="dash-card">
+                <h4>Tổng số phòng</h4>
+                <p id="statTotalRooms">30</p>
+            </div>
+            <div class="dash-card">
+                <h4>Phòng còn trống</h4>
+                <p id="statAvailable">0</p>
+            </div>
+            <div class="dash-card">
+                <h4>Phòng đã đặt</h4>
+                <p id="statBooked">0</p>
+            </div>
+            <div class="dash-card">
+                <h4>Tài khoản hệ thống</h4>
+                <p id="statUsers">0</p>
+            </div>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="chuyenTab('quanLyPhongTab', this)">QUẢN LÝ & ĐIỀU CHỈNH PHÒNG</button>
+            <button class="tab-btn" onclick="chuyenTab('quanLyTaiKhoanTab', this)">QUẢN LÝ & PHÂN QUYỀN KHÁCH HÀNG</button>
+        </div>
+
+        <!-- TAB 1: QUẢN LÝ & ĐIỀU CHỈNH PHÒNG -->
+        <div id="quanLyPhongTab" class="tab-content active">
+            <div style="margin-bottom: 20px;">
+                <button onclick="moFormThemPhong()" class="btn-submit" style="width: auto; padding: 10px 20px; background-color: #059669;">+ Thêm Phòng Mới</button>
+            </div>
+
+            <div id="boxEditRoom" class="edit-user-box" style="display: none;">
+                <h3 id="roomFormTitle" style="color: var(--header-bg); margin-bottom: 15px;">THÊM PHÒNG MỚI</h3>
+                <form id="roomForm" onsubmit="return luuPhong(event)">
+                    <input type="hidden" id="editRoomIndex" value="">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="roomName">Tên phòng:</label>
+                            <input type="text" id="roomName" placeholder="VD: Phòng Suite 406 (SUT)..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="roomPrice">Giá phòng (VNĐ/đêm):</label>
+                            <input type="number" id="roomPrice" placeholder="VD: 1500000" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomImg">Link hình ảnh (URL):</label>
+                        <input type="text" id="roomImg" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomAmenities">Tiện ích & Mô tả phòng:</label>
+                        <textarea id="roomAmenities" rows="2" placeholder="Nhập nhu cầu, loại giường, hướng view..." required></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" id="btnSaveRoom" class="btn-submit" style="flex: 1;">Thêm Phòng Mới</button>
+                        <button type="button" onclick="dongFormPhong()" class="btn-submit" style="flex: 1; background-color: #64748b;">Hủy Bỏ</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h3 style="color: var(--header-bg); margin-bottom: 15px;">DANH SÁCH TOÀN BỘ PHÒNG</h3>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên phòng</th>
+                                <th>Giá phòng</th>
+                                <th>Trạng thái</th>
+                                <th>Thông tin khách đặt</th>
+                                <th>Thao tác điều chỉnh</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminRoomTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: QUẢN LÝ TÀI KHOẢN & PHÂN QUYỀN KHÁCH HÀNG -->
+        <div id="quanLyTaiKhoanTab" class="tab-content">
+            <div style="margin-bottom: 20px;">
+                <button onclick="moFormThemUser()" class="btn-submit" style="width: auto; padding: 10px 20px; background-color: #059669;">+ Thêm Tài Khoản Mới</button>
+            </div>
+
+            <div id="boxEditUser" class="edit-user-box" style="display: none;">
+                <h3 id="userFormTitle" style="color: var(--header-bg); margin-bottom: 15px;">THÊM TÀI KHOẢN MỚI</h3>
+                <form onsubmit="return luuThongTinKhachHang(event)">
+                    <input type="hidden" id="editUserIndex" value="">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="editFullName">Họ và tên:</label>
+                            <input type="text" id="editFullName" placeholder="Nhập họ và tên..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editUsername">Tên đăng nhập (Username):</label>
+                            <input type="text" id="editUsername" placeholder="Nhập tên đăng nhập..." required>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label for="editPassword">Mật khẩu:</label>
+                            <input type="text" id="editPassword" placeholder="Nhập mật khẩu..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editRole">Quyền hạn tài khoản:</label>
+                            <select id="editRole">
+                                <option value="user">Khách hàng (User)</option>
+                                <option value="admin">Quản trị viên (Admin)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" id="btnSaveUser" class="btn-submit" style="flex: 1;">Thêm Tài Khoản</button>
+                        <button type="button" onclick="dongFormSuaUser()" class="btn-submit" style="flex: 1; background-color: #64748b;">Hủy Bỏ</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="admin-section">
+                <h3 style="color: var(--header-bg); margin-bottom: 15px;">DANH SÁCH TÀI KHOẢN HỆ THỐNG</h3>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Tên đăng nhập</th>
+                                <th>Mật khẩu</th>
+                                <th>Quyền hạn</th>
+                                <th>Thao tác điều chỉnh</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUserTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">&#9733;</span> HOTEL LUXURY
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h2 class="footer-company-name">KHÁCH SẠN HOTEL LUXURY</h2>
+            <div class="footer-columns">
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Địa chỉ liên hệ:</h4>
+                    <p>Số 3 Cầu Giấy, Láng Thượng, Đống Đa, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2026 Hotel Luxury. Báo cáo Bài tập lớn Học phần Thiết kế Web.</p>
+    </div>
+</footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

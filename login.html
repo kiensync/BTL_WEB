@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập - Hotel Luxury</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HOTEL LUXURY</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="booking.html">Đặt phòng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+                <li><a href="admin.html">Trang quản trị</a></li>
+                <li><a href="login.html" id="navAuthLink">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>ĐĂNG NHẬP HỆ THỐNG</h1>
+        <p>Quản lý tài khoản và trải nghiệm dịch vụ</p>
+    </div>
+
+    <main class="container">
+        <div class="admin-section" style="max-width: 500px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--header-bg);">ĐĂNG NHẬP</h2>
+            <form onsubmit="return dangNhap(event)">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập:</label>
+                    <input type="text" id="username" placeholder="Nhập tên đăng nhập..." required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" placeholder="Nhập mật khẩu..." required>
+                </div>
+                <button type="submit" class="btn-submit">Đăng Nhập</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+                Chưa có tài khoản? <a href="register.html" style="color: var(--btn-bg); text-decoration: none; font-weight: bold;">Đăng ký ngay</a>
+            </p>
+
+            <div style="margin-top: 20px; padding: 12px; background: #f1f5f9; border-radius: 6px; font-size: 13px; color: #475569;">
+                <b>Tài khoản thử nghiệm:</b><br>
+                • Admin: <code>admin</code> / <code>123456</code><br>
+                • Khách hàng: <code>guest</code> / <code>123456</code>
+            </div>
+        </div>
+    </main>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">&#9733;</span> HOTEL LUXURY
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h2 class="footer-company-name">KHÁCH SẠN HOTEL LUXURY</h2>
+            <div class="footer-columns">
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Địa chỉ liên hệ:</h4>
+                    <p>Số 3 Cầu Giấy, Láng Thượng, Đống Đa, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2026 Hotel Luxury. Báo cáo Bài tập lớn Học phần Thiết kế Web.</p>
+    </div>
+</footer>
+    <script src="js/auth.js"></script>
+    <script>
+        capNhatMenuAuth();
+    </script>
+</body>
+</html>

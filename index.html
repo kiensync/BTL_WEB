@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Hotel Luxury</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HOTEL LUXURY</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="booking.html">Đặt phòng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+                <li><a href="admin.html">Trang quản trị</a></li>
+                <li><a href="login.html" id="navAuthLink">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>TRẢI NGHIỆM NGHỈ DƯỠNG ĐẲNG CẤP</h1>
+        <p>Chào mừng bạn đến với không gian sang trọng của Hotel Luxury</p>
+    </div>
+
+    <main class="container">
+        <div class="filter-box">
+            <div>
+                <label for="searchRoom"><b>Tìm kiếm:</b></label>
+                <input type="text" id="searchRoom" placeholder="Nhập tên phòng..." oninput="hienThiPhongTrangChu()">
+            </div>
+            <div>
+                <label for="filterType"><b>Loại phòng:</b></label>
+                <select id="filterType" onchange="hienThiPhongTrangChu()">
+                    <option value="All">Tất cả loại</option>
+                    <option value="Standard">Standard (STD)</option>
+                    <option value="Superior">Superior (SUP)</option>
+                    <option value="Deluxe">Deluxe (DLX)</option>
+                    <option value="Suite">Suite (SUT)</option>
+                    <option value="Twin">Twin (TWN)</option>
+                    <option value="Double">Double (DBL)</option>
+                </select>
+            </div>
+            <div>
+                <label for="filterPrice"><b>Mức giá:</b></label>
+                <select id="filterPrice" onchange="hienThiPhongTrangChu()">
+                    <option value="All">Tất cả mức giá</option>
+                    <option value="1">Dưới 700.000 VNĐ</option>
+                    <option value="2">700.000 - 1.000.000 VNĐ</option>
+                    <option value="3">Trên 1.000.000 VNĐ</option>
+                </select>
+            </div>
+            <div>
+                <label for="filterStatus"><b>Trạng thái:</b></label>
+                <select id="filterStatus" onchange="hienThiPhongTrangChu()">
+                    <option value="All">Tất cả trạng thái</option>
+                    <option value="Còn trống">Còn trống</option>
+                    <option value="Đã đặt">Đã đặt</option>
+                </select>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 15px; color: var(--header-bg);">DANH SÁCH PHÒNG</h2>
+        <div class="room-grid" id="roomGridContainer"></div>
+
+        <div id="roomModal" class="modal-overlay">
+            <div class="modal-content">
+                <span class="close-modal" onclick="dongModal()">&times;</span>
+                <img id="modalImg" src="" alt="Ảnh phòng" style="width:100%; height:200px; object-fit:cover; border-radius:6px; margin-bottom:15px;">
+                <h3 id="modalName" style="margin-bottom: 10px; color: var(--header-bg); font-size: 20px;">Tên phòng</h3>
+                <p style="margin-bottom: 8px;"><b>Giá phòng:</b> <span id="modalPrice" style="color: #2563eb; font-weight: bold;">0 VNĐ</span></p>
+                <p style="margin-bottom: 8px;"><b>Trạng thái:</b> <span id="modalStatus" style="font-weight: bold;">Còn trống</span></p>
+                <p style="margin-top: 8px; font-weight: bold;">Đặc điểm & Tiện ích:</p>
+                <div id="modalAmenities" style="background: #f1f5f9; padding: 10px; border-radius: 6px; margin-bottom: 20px;">Mô tả...</div>
+                <div id="modalActionBtn"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">&#9733;</span> HOTEL LUXURY
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h2 class="footer-company-name">KHÁCH SẠN HOTEL LUXURY</h2>
+            <div class="footer-columns">
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Địa chỉ liên hệ:</h4>
+                    <p>Số 3 Cầu Giấy, Láng Thượng, Đống Đa, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2026 Hotel Luxury. Báo cáo Bài tập lớn Học phần Thiết kế Web.</p>
+    </div>
+</footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        capNhatMenuAuth();
+        hienThiPhongTrangChu();
+    </script>
+</body>
+</html>

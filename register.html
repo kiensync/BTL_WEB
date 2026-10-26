@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - Hotel Luxury</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HOTEL LUXURY</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="booking.html">Đặt phòng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+                <li><a href="admin.html">Trang quản trị</a></li>
+                <li><a href="login.html" id="navAuthLink">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>ĐĂNG KÝ TÀI KHOẢN</h1>
+        <p>Trở thành thành viên để nhận những ưu đãi tốt nhất</p>
+    </div>
+
+    <main class="container">
+        <div class="admin-section" style="max-width: 500px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 20px; color: var(--header-bg);">ĐĂNG KÝ THÔNG TIN</h2>
+            <form onsubmit="return dangKyTaiKhoan(event)">
+                <div class="form-group">
+                    <label for="regName">Họ và tên:</label>
+                    <input type="text" id="regName" placeholder="Nhập họ và tên..." required>
+                </div>
+                <div class="form-group">
+                    <label for="regUsername">Tên đăng nhập:</label>
+                    <input type="text" id="regUsername" placeholder="Nhập tên đăng nhập..." required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Mật khẩu:</label>
+                    <input type="password" id="regPassword" placeholder="Nhập mật khẩu..." required>
+                </div>
+                <div class="form-group">
+                    <label for="regConfirmPassword">Xác nhận mật khẩu:</label>
+                    <input type="password" id="regConfirmPassword" placeholder="Nhập lại mật khẩu..." required>
+                </div>
+                <button type="submit" class="btn-submit">Đăng Ký</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px; font-size: 14px;">
+                Đã có tài khoản? <a href="login.html" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">Đăng nhập ngay</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">&#9733;</span> HOTEL LUXURY
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h2 class="footer-company-name">KHÁCH SẠN HOTEL LUXURY</h2>
+            <div class="footer-columns">
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Địa chỉ liên hệ:</h4>
+                    <p>Số 3 Cầu Giấy, Láng Thượng, Đống Đa, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2026 Hotel Luxury. Báo cáo Bài tập lớn Học phần Thiết kế Web.</p>
+    </div>
+</footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

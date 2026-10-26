@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Hotel Luxury</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HOTEL LUXURY</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="booking.html">Đặt phòng</a></li>
+                <li><a href="lienhe.html">Liên hệ</a></li>
+                <li><a href="admin.html">Trang quản trị</a></li>
+                <li><a href="login.html" id="navAuthLink">Đăng nhập</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <h1>LIÊN HỆ VỚI CHÚNG TÔI</h1>
+        <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn 24/7</p>
+    </div>
+
+    <main class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+            <div class="admin-section" style="margin-bottom: 0;">
+                <h3 style="margin-bottom: 15px; color: var(--header-bg);">THÔNG TIN KHÁCH SẠN</h3>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><b>Địa chỉ:</b> Số 120 Yên Lãng, phường Đống Đa, Hà Nội</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><b>Hotline:</b> 1900 8386 - 0916 368 888</p>
+                <p style="margin-bottom: 10px; line-height: 1.6;"><b>Email:</b> support@hotelluxury.vn</p>
+                <p style="line-height: 1.6;"><b>Giờ làm việc:</b> Phục vụ xuyên suốt 24 giờ tất cả các ngày trong tuần.</p>
+            </div>
+            
+            <div class="admin-section" style="margin-bottom: 0;">
+                <h3 style="margin-bottom: 15px; color: var(--header-bg);">GỬI TIN NHẮN ĐÓNG GÓP</h3>
+                <form onsubmit="return guiLienHe(event)">
+                    <div class="form-group">
+                        <label for="contactName">Họ và tên:</label>
+                        <input type="text" id="contactName" placeholder="Nhập họ tên của bạn..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email liên hệ:</label>
+                        <input type="email" id="contactEmail" placeholder="Nhập email của bạn..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Nội dung tin nhắn:</label>
+                        <textarea id="contactMessage" rows="4" placeholder="Nhập nội dung cần hỗ trợ..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Gửi Tin Nhắn</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">&#9733;</span> HOTEL LUXURY
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h2 class="footer-company-name">KHÁCH SẠN HOTEL LUXURY</h2>
+            <div class="footer-columns">
+                <div class="footer-col" style="flex: 1;">
+                    <h4>Địa chỉ liên hệ:</h4>
+                    <p>Số 3 Cầu Giấy, Láng Thượng, Đống Đa, Hà Nội</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <p>&copy; 2026 Hotel Luxury. Báo cáo Bài tập lớn Học phần Thiết kế Web.</p>
+    </div>
+</footer>
+
+    <script src="js/auth.js"></script>
+    <script>
+        capNhatMenuAuth();
+        function guiLienHe(event) {
+            event.preventDefault();
+            alert("Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi trong thời gian sớm nhất.");
+            event.target.reset();
+            return false;
+        }
+    </script>
+</body>
+</html>
